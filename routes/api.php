@@ -11,6 +11,10 @@ Route::get('/user', function (Request $request) {
 
 
 Route::apiResource('events',EventController::class);
+
 Route::apiResource('events.attendees',AttendeeController::class)
-    ->scoped(['attendee' => 'event']);
+    ->scoped()->except(['update']);
+
+
+    
 
