@@ -9,6 +9,7 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
+
 class EventController extends Controller 
 {
     use CanLoadRelationships;
@@ -17,8 +18,15 @@ class EventController extends Controller
 
 
 
-    // public function __construct(){
-    //     $this->middleware('auth:sanctum')->except(['index', 'show']);
+    public function __construct(){
+        // $this->middleware('auth:sanctum')->except(['index', 'show']);
+        
+    
+    }
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:sanctum')->except(['index','show']);
     // }
 
     /**
@@ -89,12 +97,12 @@ class EventController extends Controller
     public function update(Request $request, Event $event )
     {
 
-            if(Gate::denies('update-event')){
-                abort(403,'You are not authrozied to update this event');
-            }
+            // if(Gate::denies('update-event')){
+            //     abort(403,'You are not authrozied to update this event');
+            // }
 
-   
-            Gate::authorize('update-event', $event);
+            // $this->authorize('update-event',$event);
+            // Gate::authorize('update-event', $event);
 
             $event->update(
                 $request->validate([
@@ -113,6 +121,7 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+   
        $event->delete();
 
     //    return response()->json([
